@@ -1,25 +1,19 @@
 import "./style.css";
-import javascriptLogo from "./javascript.svg";
-import { setupCounter } from "./counter.js";
+import updateWeather from "./updateWeather";
 
-document.querySelector("#app").innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`;
+// ask user for his geo position
+navigator.geolocation.getCurrentPosition(
+  handleSuccessPermission,
+  handleRejectPermission
+);
 
-setupCounter(document.querySelector("#counter"));
+function handleSuccessPermission(position) {
+  console.log("success");
+  updateWeather(position.coords.latitude, position.coords.longitude);
+}
+
+function handleRejectPermission() {
+  console.log("reject");
+  // Dundee, Scotland
+  updateWeather(56.46913, -2.97489);
+}
