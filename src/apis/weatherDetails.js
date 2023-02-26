@@ -1,9 +1,17 @@
 import axios from "axios";
 
-export default async (latitude, longitude) => {
+/**
+ * Makes a call to the freeCodeCamp Weather API
+ *
+ * @param {Number} lat A latitude
+ * @param {Number} lon A longitude
+ *
+ * @returns {Object} The weather details object
+ */
+export default async (lat, lon) => {
   try {
     const response = await axios.get(
-      `https://weather-proxy.freecodecamp.rocks/api/current?lat=${latitude}&lon=${longitude}`
+      `https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`
     );
     return response.data;
   } catch (error) {

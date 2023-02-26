@@ -1,5 +1,13 @@
 import getWeatherDetails from "./apis/weatherDetails.js";
 
+/**
+ * Updates the weather information with the most recent data
+ * based on the given parameters
+ *
+ * @param {Number} lat A latitude
+ * @param {Number} lon A longitude
+ *
+ */
 export default async (lat, lon) => {
   const cityEl = document.getElementById("city");
   const tempEl = document.getElementById("temp");
