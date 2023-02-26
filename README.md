@@ -84,6 +84,8 @@ Once you make your Pull Request, you are done!
 - Add any relevant labels
 - Milestone and Assignee should be left alone (unless you are assigning yourself)
 
+![image](https://user-images.githubusercontent.com/65303812/221426518-cedb392e-651e-44d8-bbb5-0e84ae71211c.png)
+
 ### Merge Conflicts
 
 These will be handled on a case by case basis by the project manager. If you have a merge conflict, please reach out to the project manager

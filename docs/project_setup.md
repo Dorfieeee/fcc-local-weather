@@ -9,7 +9,7 @@
   - [x] linter
   - [x] formatter -> prettier
 - [x] - setup pre-commit hooks
-- [] - complete README
+- [x] - complete README
 
 # STEP-BY-STEP
 
