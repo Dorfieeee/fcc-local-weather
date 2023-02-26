@@ -15,7 +15,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "git": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
