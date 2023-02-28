@@ -2,6 +2,11 @@
 
 A simple front-end app displaying the local weather using freeCodeCamp API.
 
+## Join our team
+
+[![Discord server](https://user-images.githubusercontent.com/65303812/221849016-b67e6f6d-2510-4673-b6a4-7eacaf79942f.png)](https://discord.gg/mkvDfk55P2)
+
+
 ## Description
 
 It is a standalone front-end single page application built with HTML5, TailwindCSS and JavaScript. It is developed by the members of the freeCodeCamp community in order to develop soft skills, get more familiar with Fetch API, working with JSON, Git workflow and develop general coding skills. _And also, just for the sake of happy coding!_
