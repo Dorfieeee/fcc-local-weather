@@ -7,10 +7,81 @@
     <title>Weather App</title>
   </head>
   <body class="bg-green-300">
-    <div class="container mx-auto">
-      <h1 class="text-2xl" id="city"></h1>
-      <div id="icon"></div>
-      <div id="temp"></div>
+    <div class="mx-auto 2xl:container">
+      <div
+        id="weather-app"
+        class="flex min-h-screen w-full flex-col md:grid md:grid-cols-12 md:grid-rows-layout"
+      >
+        <div
+          id="navigation"
+          class="flex h-12 items-center justify-between bg-orange-200 px-3 md:col-start-6 md:col-end-13 md:h-full lg:col-start-4"
+        >
+          <div id="unit-switch" class="flex gap-2">
+            <button class="h-10 w-10 rounded-full border border-blue-200 p-2">
+              &#176;F
+            </button>
+            <button class="h-10 w-10 rounded-full border border-blue-200 p-2">
+              &#176;C
+            </button>
+          </div>
+          <div
+            id="user-avatar"
+            class="h-10 w-10 rounded-full bg-pink-300"
+          ></div>
+        </div>
+        <div
+          id="weather-main-info"
+          class="col-span-3 row-span-full flex flex-grow flex-col bg-slate-200 md:col-start-1 md:col-end-6 md:row-span-full lg:col-end-4"
+        >
+          <div id="search" class="h-16">
+            <input
+              type="text"
+              placeholder="Search by city, postcode,..."
+              class="h-full w-full"
+            />
+          </div>
+          <div
+            id="weather-details"
+            class="flex flex-grow flex-col items-center justify-center"
+          >
+            <div id="icon" class="h-32"></div>
+            <div id="temp" class="min-h-[1.5rem] text-5xl"></div>
+          </div>
+          <div id="location" class="min-h-[1.5rem]">
+            <div id="city"></div>
+          </div>
+        </div>
+        <div
+          id="weather-side-info"
+          class="grid grid-cols-2 gap-3 bg-blue-200 md:col-start-6 md:col-end-13 md:p-3 lg:col-start-4 lg:grid-cols-3"
+        >
+          <h2 class="col-span-full">Today's Highlights</h2>
+          <div class="info-card">
+            <p>Humidity</p>
+            <p id="humidity" class="text-2xl"></p>
+          </div>
+          <div class="info-card">
+            <p>Pressure</p>
+            <p id="pressure" class="text-2xl"></p>
+          </div>
+          <div class="info-card">
+            <p>Wind</p>
+            <p id="wind" class="text-2xl"></p>
+          </div>
+          <div class="info-card">
+            <p>Visibility</p>
+            <p id="visibility" class="text-2xl"></p>
+          </div>
+          <div class="info-card">
+            <p>Sunrise & Sunset</p>
+            <p id="sun-rise-set" class="text-2xl"></p>
+          </div>
+          <div class="info-card">
+            <p>Feels like</p>
+            <p id="feels" class="text-2xl"></p>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
