@@ -1,4 +1,5 @@
 import getWeatherDetails from "./apis/weatherDetails.js";
+import { $ } from "./utils.js";
 
 /**
  * Updates the weather information with the most recent data
@@ -9,9 +10,9 @@ import getWeatherDetails from "./apis/weatherDetails.js";
  *
  */
 export default async (lat, lon) => {
-  const cityEl = document.getElementById("city");
-  const tempEl = document.getElementById("temp");
-  const iconEl = document.getElementById("icon");
+  const $city = $("#city");
+  const $temperature = $("#temp");
+  const $icon = $("#icon");
 
   const weatherDetails = await getWeatherDetails(lat, lon);
   const weather = weatherDetails.weather[0];
@@ -23,9 +24,9 @@ export default async (lat, lon) => {
   const temp = weatherDetails.main.temp;
   const iconUrl = weather.icon;
 
-  cityEl.innerHTML = `${cityName}, ${country}`;
-  tempEl.innerHTML = `${temp} &#176;C`;
-  iconEl.innerHTML = `
+  $city.innerHTML = `${cityName}, ${country}`;
+  $temperature.innerHTML = `${temp} &#176;C`;
+  $icon.innerHTML = `
         <img src=${iconUrl} alt="${weather.description}" width=120 height=120 />
       `;
 };
