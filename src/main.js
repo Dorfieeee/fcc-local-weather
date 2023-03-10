@@ -17,8 +17,8 @@ async function handleSuccessPermission(position) {
 }
 
 async function handleRejectPermission() {
-  // Dundee, Scotland
-  weatherData = await getWeatherDetails(56.46913, -2.97489);
+  // Kaliningrad, Russia
+  weatherData = await getWeatherDetails(54.70649, 20.51095);
   updateWeather(weatherData, unitSystem);
 }
 
