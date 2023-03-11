@@ -1,5 +1,4 @@
-import getWeatherDetails from "./apis/weatherDetails.js";
-import { $, epochToTime } from "./utils.js";
+import { $, celciusToFahrenheit, epochToTime, kmToMi } from "./utils.js";
 
 /**
  * Updates the weather information with the most recent data
@@ -9,7 +8,7 @@ import { $, epochToTime } from "./utils.js";
  * @param {Number} lon A longitude
  *
  */
-export default async (lat, lon) => {
+export default async (weatherDetails, unitSystem) => {
   const $city = $("#city");
   const $temperature = $("#temp");
   const $icon = $("#icon");
@@ -20,7 +19,10 @@ export default async (lat, lon) => {
   const $feelsLike = $("#feels-like");
   const $visibility = $("#visibility");
 
-  const weatherDetails = await getWeatherDetails(lat, lon);
+  const isMetric = unitSystem === "metric";
+  const tempUnit = isMetric ? "&#176;C" : "&#176;F";
+  const distUnit = isMetric ? "km" : "mi";
+  const speedUnit = isMetric ? "km/h" : "mph";
 
   const { country, sunset, sunrise } = weatherDetails.sys;
   const { name, dt, visibility } = weatherDetails;
@@ -29,16 +31,24 @@ export default async (lat, lon) => {
   const { icon, description } = weatherDetails.weather[0];
   const { speed, deg } = weatherDetails.wind;
 
-  $visibility.innerHTML = `${Math.floor(visibility / 1000)} km`;
+  $visibility.innerHTML = `${Math.round(
+    isMetric ? visibility / 1000 : kmToMi(visibility / 1000)
+  )} ${distUnit}`;
   $city.innerHTML = `${name}, ${country}`;
   $humidity.innerHTML = `${humidity} %`;
-  $wind.innerHTML = `${speed} km/h`;
+  $wind.innerHTML = `${Math.round(
+    isMetric ? speed : kmToMi(speed)
+  )} ${speedUnit}`;
   $pressure.innerHTML = `${pressure} hPa`;
   $sun.innerHTML = ` &uarr;${epochToTime(sunrise)}<br>&darr;${epochToTime(
     sunset
   )}`;
-  $feelsLike.innerHTML = `${Math.round(feels_like)} &#176;C`;
-  $temperature.innerHTML = `${Math.round(temp)} &#176;C`;
+  $feelsLike.innerHTML = `${Math.round(
+    isMetric ? feels_like : celciusToFahrenheit(feels_like)
+  )} ${tempUnit}`;
+  $temperature.innerHTML = `${Math.round(
+    isMetric ? temp : celciusToFahrenheit(temp)
+  )} ${tempUnit}`;
   $icon.innerHTML = `
         <img src=${icon} alt="${description}" width=120 height=120 />
       `;
