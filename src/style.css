@@ -4,6 +4,6 @@
 
 @layer components {
   .info-card {
-    @apply h-32 w-full max-w-sm rounded-3xl bg-teal-200 md:h-full md:max-h-48;
+    @apply flex flex-col justify-between p-4 w-full max-w-sm rounded-3xl bg-white md:h-full md:max-h-48;
   }
 }
