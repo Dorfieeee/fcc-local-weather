@@ -1,4 +1,10 @@
-import { $, celciusToFahrenheit, epochToTime, kmToMi } from "./utils.js";
+import {
+  $,
+  celciusToFahrenheit,
+  epochToTime,
+  kmToMi,
+  weatherIcon,
+} from "./utils.js";
 
 /**
  * Updates the weather information with the given data.
@@ -19,7 +25,7 @@ export default async (weatherDetails, unitSystem) => {
   const { name, dt, visibility } = weatherDetails;
   const { feels_like, humidity, pressure, temp, temp_max, temp_min } =
     weatherDetails.main;
-  const { icon, description } = weatherDetails.weather[0];
+  const { icon, description, main } = weatherDetails.weather[0];
   const { speed, deg } = weatherDetails.wind;
 
   updateField($("#visibility"), {
@@ -67,10 +73,34 @@ export default async (weatherDetails, unitSystem) => {
     desc: `${epochToTime(sunset - sunrise)} hrs of daylight.`,
   });
 
-  $("#city").innerHTML = `${name}, ${country}`;
+  updateField($("#city"), { value: `${name}, ${country}` });
+
+  updateField($("#clouds"), {
+    value: description[0].toUpperCase() + description.slice(1),
+  });
+
+  updateField($("#last-update"), {
+    value: `${new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(
+      new Date(dt * 1000)
+    )}, ${epochToTime(dt)}`,
+  });
+
+  updateField($("#temp-min"), {
+    value: Math.round(isMetric ? temp_min : celciusToFahrenheit(temp_min)),
+    unit: tempUnit,
+  });
+
+  updateField($("#temp-max"), {
+    value: Math.round(isMetric ? temp_max : celciusToFahrenheit(temp_max)),
+    unit: tempUnit,
+  });
 
   $("#icon").innerHTML = `
-        <img src=${icon} alt="${description}" width=120 height=120 />
+  <a href="https://www.flaticon.com/free-icons/cloud" title="Icons created by iconixar - Flaticon"><img src=${weatherIcon(
+    main
+  )} alt="${description}" class="md:w-full md:mx-auto" width=96 height=96 /></a>
+
+        
       `;
 };
 

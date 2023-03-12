@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateRows: {
-        // Set the first line to 4rem(navigation, search), rest auto
-        layout: "4rem auto",
+        // Set the first line to 6rem(navigation, search), rest auto
+        layout: "6rem auto",
       },
     },
   },

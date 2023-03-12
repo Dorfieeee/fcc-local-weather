@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body class="bg-slate-200">
-    <div class="mx-auto 2xl:container">
+  <body class="bg-gray-100">
+    <div
+      class="mx-auto 2xl:container min-h-screen flex flex-col justify-center"
+    >
       <div
         id="weather-app"
-        class="flex min-h-screen w-full flex-col md:grid md:grid-cols-12 md:grid-rows-layout"
+        class="flex max-2xl:min-h-screen w-full flex-col md:grid md:grid-cols-12 md:grid-rows-layout xl:rounded-3xl shadow-2xl"
       >
+        <!-- Navigation -->
         <div
           id="navigation"
-          class="flex h-12 items-center justify-between px-3 md:col-start-6 md:col-end-13 md:h-full lg:col-start-4"
+          class="flex items-center justify-between py-2 px-4 md:py-4 md:px-8 md:col-start-6 md:col-end-13 md:h-full lg:col-start-5 xl:col-start-4"
         >
           <div id="unit-switch" class="flex gap-2">
             <button
@@ -34,37 +37,78 @@
           </div>
           <div
             id="user-avatar"
-            class="h-10 w-10 rounded-full bg-pink-300"
+            class="h-10 w-10 rounded-full bg-gray-400"
           ></div>
         </div>
+        <!-- Main info -->
         <div
           id="weather-main-info"
-          class="col-span-3 row-span-full flex flex-grow flex-col bg-white md:col-start-1 md:col-end-6 md:row-span-full lg:col-end-4"
+          class="col-span-3 row-span-full flex py-4 px-4 md:px-8 flex-grow flex-col bg-white md:col-start-1 md:col-end-6 lg:col-end-5 xl:col-end-4 xl:rounded-tl-3xl xl:rounded-bl-3xl"
         >
-          <div id="search" class="h-16">
+          <div id="search" class="mb-4 md:py-2 md:px-4">
             <input
               type="text"
               placeholder="Search by city, postcode,..."
-              class="h-full w-full"
+              class="text-lg w-full h-12"
             />
           </div>
           <div
             id="weather-details"
-            class="flex flex-grow flex-col items-center justify-center"
+            class="flex flex-grow flex-wrap gap-6 md:flex-col md:flex-grow-0 mb-3"
           >
-            <div id="icon" class="h-32"></div>
-            <div id="temp" class="min-h-[1.5rem]">
-              <span class="text-5xl" data-value="">0</span
-              ><span data-unit="">&#176;C</span>
+            <div class="flex flex-col justify-between gap-2">
+              <div class="flex gap-2 flex-row md:gap-4">
+                <span id="temp">
+                  <span class="text-6xl md:text-8xl" data-value="">0</span
+                  ><span data-unit="">&#176;C</span>
+                </span>
+                <div id="icon" class="md:w-3/4 max-w-[12rem]"></div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="temp-min"
+                  >min.<span class="font-medium text-lg ml-1" data-value>0</span
+                  ><span data-unit>&#176;C</span></span
+                >
+                <span class="mx-1 border-r-2 h-3/4"></span>
+                <span id="temp-max"
+                  >max.<span class="font-medium text-lg ml-1" data-value>0</span
+                  ><span data-unit>&#176;C</span></span
+                >
+              </div>
+            </div>
+            <div class="flex-grow">
+              <div id="last-update" class="w-3/4 md:text-lg font-medium">
+                <span data-value="">Sunday, 10:00</span>
+              </div>
+              <div class="w-4/5 my-2 md:my-4 border-bottom border-b-2"></div>
+              <div id="clouds" class="w-3/4 md:text-lg font-medium">
+                <span data-value>Mostly cloudy</span>
+              </div>
+              <div id="rain" class="w-3/4 md:text-lg font-medium">
+                Rain - <span data-value="">0</span>%
+              </div>
+              <div class="w-4/5 my-2 md:my-4 border-bottom border-b-2"></div>
+              <div id="city" class="w-3/4 md:text-lg font-medium">
+                <span data-value></span>
+              </div>
             </div>
           </div>
-          <div id="location" class="min-h-[1.5rem]">
-            <div id="city"></div>
+          <div class="w-full h-24 mb-3 relative flex-grow md:h-auto md:my-0">
+            <img
+              class="w-full h-full object-cover rounded-3xl"
+              src="https://images.pexels.com/photos/39003/scotland-united-kingdom-england-isle-of-skye-39003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              width="128"
+              height="96"
+            />
+            <div
+              class="w-full h-full rounded-3xl absolute bg-gray-100 opacity-20 top-0 left-0"
+            ></div>
           </div>
         </div>
+        <!-- Side info -->
         <div
           id="weather-side-info"
-          class="flex flex-col p-4 md:col-start-6 md:col-end-13 md:p-3 lg:col-start-4"
+          class="flex flex-col py-2 px-4 md:py-4 md:px-8 md:col-start-6 md:col-end-13 lg:col-start-5 xl:col-start-4"
         >
           <p class="col-span-full text-xl my-2">Today's Forecast</p>
           <div class="flex justify-around w-full my-5">
