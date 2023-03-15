@@ -99,8 +99,6 @@ export default async (weatherDetails, unitSystem) => {
   <a href="https://www.flaticon.com/free-icons/cloud" title="Icons created by iconixar - Flaticon"><img src=${weatherIcon(
     main
   )} alt="${description}" class="md:w-full md:mx-auto" width=96 height=96 /></a>
-
-        
       `;
 };
 
