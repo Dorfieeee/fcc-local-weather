@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body class="bg-green-300">
+  <body class="bg-slate-200">
     <div class="mx-auto 2xl:container">
       <div
         id="weather-app"
@@ -14,7 +14,7 @@
       >
         <div
           id="navigation"
-          class="flex h-12 items-center justify-between bg-orange-200 px-3 md:col-start-6 md:col-end-13 md:h-full lg:col-start-4"
+          class="flex h-12 items-center justify-between px-3 md:col-start-6 md:col-end-13 md:h-full lg:col-start-4"
         >
           <div id="unit-switch" class="flex gap-2">
             <button
@@ -39,7 +39,7 @@
         </div>
         <div
           id="weather-main-info"
-          class="col-span-3 row-span-full flex flex-grow flex-col bg-slate-200 md:col-start-1 md:col-end-6 md:row-span-full lg:col-end-4"
+          class="col-span-3 row-span-full flex flex-grow flex-col bg-white md:col-start-1 md:col-end-6 md:row-span-full lg:col-end-4"
         >
           <div id="search" class="h-16">
             <input
@@ -53,7 +53,10 @@
             class="flex flex-grow flex-col items-center justify-center"
           >
             <div id="icon" class="h-32"></div>
-            <div id="temp" class="min-h-[1.5rem] text-5xl"></div>
+            <div id="temp" class="min-h-[1.5rem]">
+              <span class="text-5xl" data-value="">0</span
+              ><span data-unit="">&#176;C</span>
+            </div>
           </div>
           <div id="location" class="min-h-[1.5rem]">
             <div id="city"></div>
@@ -61,32 +64,73 @@
         </div>
         <div
           id="weather-side-info"
-          class="grid grid-cols-2 gap-3 bg-blue-200 md:col-start-6 md:col-end-13 md:p-3 lg:col-start-4 lg:grid-cols-3"
+          class="flex flex-col p-4 md:col-start-6 md:col-end-13 md:p-3 lg:col-start-4"
         >
-          <h2 class="col-span-full">Today's Highlights</h2>
-          <div class="info-card">
-            <p>Humidity</p>
-            <p id="humidity" class="text-2xl"></p>
+          <p class="col-span-full text-xl my-2">Today's Forecast</p>
+          <div class="flex justify-around w-full my-5">
+            <div class="rounded-full w-20 h-20 bg-white"></div>
+            <div class="rounded-full w-20 h-20 bg-white"></div>
+            <div class="rounded-full w-20 h-20 bg-white"></div>
+            <div class="rounded-full w-20 h-20 bg-white"></div>
+            <div class="rounded-full w-20 h-20 bg-white"></div>
+            <div class="rounded-full w-20 h-20 bg-white"></div>
           </div>
-          <div class="info-card">
-            <p>Pressure</p>
-            <p id="pressure" class="text-2xl"></p>
-          </div>
-          <div class="info-card">
-            <p>Wind</p>
-            <p id="wind" class="text-2xl"></p>
-          </div>
-          <div class="info-card">
-            <p>Visibility</p>
-            <p id="visibility" class="text-2xl"></p>
-          </div>
-          <div class="info-card">
-            <p>Sunrise & Sunset</p>
-            <p id="sunrise-sunset" class="text-2xl"></p>
-          </div>
-          <div class="info-card">
-            <p>Feels like</p>
-            <p id="feels-like" class="text-2xl"></p>
+          <div class="grow"></div>
+          <p class="col-span-full text-xl my-2">Today's Highlights</p>
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+            <div id="humidity" class="info-card">
+              <p class="text-slate-400">Humidity</p>
+              <div class="py-4">
+                <span class="text-4xl mr-1" data-value>0</span>
+                <span data-unit>%</span>
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
+            <div id="pressure" class="info-card">
+              <p class="text-slate-400">Pressure</p>
+              <div class="py-4">
+                <span class="text-4xl mr-1" data-value>0</span
+                ><span data-unit>hPa</span>
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
+            <div id="wind" class="info-card">
+              <p class="text-slate-400">Wind</p>
+              <div class="py-4">
+                <span class="text-4xl mr-1" data-value>0</span
+                ><span data-unit>km/h</span>
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
+            <div id="visibility" class="info-card">
+              <p class="text-slate-400">Visibility</p>
+              <div class="py-4">
+                <span class="text-4xl mr-1" data-value>0</span
+                ><span data-unit>km</span>
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
+            <div id="daytimes" class="info-card">
+              <p class="text-slate-400">Sunrise & Sunset</p>
+              <div class="flex flex-col flex-wrap justify-between py-4">
+                <span id="sunrise"
+                  ><span class="mr-1">&uarr;</span
+                  ><span class="text-2xl" data-value>00:00</span></span
+                ><span id="sunset"
+                  ><span class="mr-1">&darr;</span
+                  ><span class="text-2xl" data-value>00:00</span></span
+                >
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
+            <div id="feels-like" class="info-card">
+              <p class="text-slate-400">Feels like</p>
+              <div class="py-4">
+                <span class="text-4xl mr-1" data-value>0</span>
+                <span data-unit>&#176;C</span>
+              </div>
+              <p class="text-slate-400" data-desc>Description</p>
+            </div>
           </div>
         </div>
       </div>
