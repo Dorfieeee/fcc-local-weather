@@ -1,7 +1,7 @@
 import axios from "axios";
 
 /**
- * Makes a call to the freeCodeCamp Weather API
+ * Makes a call to the open Weather API
  *
  * @param {Number} lat A latitude
  * @param {Number} lon A longitude
@@ -11,7 +11,9 @@ import axios from "axios";
 export default async (lat, lon) => {
   try {
     const response = await axios.get(
-      `https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${
+        import.meta.env.VITE_API_KEY
+      }&units=metric`
     );
     return response.data;
   } catch (error) {
