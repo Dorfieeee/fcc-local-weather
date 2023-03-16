@@ -12,7 +12,7 @@ export const epochToTime = (seconds) =>
  * @param {float} C
  * @returns {float}
  */
-export const celciusToFahrenheit = (C) => C * (9 / 5) + 32;
+export const celciusToFahrenheit = (C) => (C - 273.15) * (9 / 5) + 32;
 
 /**
  * Converts a value representing Fahrenheit to Celcius
