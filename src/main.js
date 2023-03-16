@@ -13,7 +13,6 @@ async function handleSuccessPermission(position) {
     position.coords.latitude,
     position.coords.longitude
   );
-  console.log(weatherData);
   updateWeather(weatherData, unitSystem);
 }
 
