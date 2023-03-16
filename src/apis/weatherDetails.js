@@ -15,7 +15,6 @@ export default async (lat, lon) => {
         import.meta.env.VITE_API_KEY
       }&units=metric`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
