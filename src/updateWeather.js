@@ -55,15 +55,13 @@ export default async (weatherDetails, unitSystem) => {
   });
 
   updateField($("#feels-like"), {
-    value: Math.round(
-      isMetric ? feels_like - 273.15 : celciusToFahrenheit(feels_like)
-    ),
+    value: Math.round(isMetric ? feels_like : celciusToFahrenheit(feels_like)),
     unit: tempUnit,
     desc: "Feels good, man!",
   });
 
   updateField($("#temp"), {
-    value: Math.round(isMetric ? temp - 273.15 : celciusToFahrenheit(temp)),
+    value: Math.round(isMetric ? temp : celciusToFahrenheit(temp)),
     unit: tempUnit,
   });
 
@@ -88,16 +86,12 @@ export default async (weatherDetails, unitSystem) => {
   });
 
   updateField($("#temp-min"), {
-    value: Math.round(
-      isMetric ? temp_min - 273.15 : celciusToFahrenheit(temp_min)
-    ),
+    value: Math.round(isMetric ? temp_min : celciusToFahrenheit(temp_min)),
     unit: tempUnit,
   });
 
   updateField($("#temp-max"), {
-    value: Math.round(
-      isMetric ? temp_max - 273.15 : celciusToFahrenheit(temp_max)
-    ),
+    value: Math.round(isMetric ? temp_max : celciusToFahrenheit(temp_max)),
     unit: tempUnit,
   });
 
