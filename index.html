@@ -4,9 +4,22 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--Jost Font-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!--Tilt Warp Font-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
     <title>Weather App</title>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 font-global">
     <div
       class="mx-auto 2xl:container min-h-screen flex flex-col justify-center"
     >
@@ -49,7 +62,7 @@
             <input
               type="text"
               placeholder="Search by city, postcode,..."
-              class="text-lg w-full h-12"
+              class="text-lg w-full h-12 font-title"
             />
           </div>
           <div
@@ -66,25 +79,25 @@
               </div>
               <div class="flex items-center gap-2">
                 <span id="temp-min"
-                  >min.<span class="font-medium text-lg ml-1" data-value>0</span
+                  >min.<span class="text-lg ml-1" data-value>0</span
                   ><span data-unit>&#176;C</span></span
                 >
                 <span class="mx-1 border-r-2 h-3/4"></span>
                 <span id="temp-max"
-                  >max.<span class="font-medium text-lg ml-1" data-value>0</span
+                  >max.<span class="text-lg ml-1" data-value>0</span
                   ><span data-unit>&#176;C</span></span
                 >
               </div>
             </div>
             <div class="flex-grow">
-              <div id="last-update" class="w-3/4 md:text-lg font-medium">
+              <div id="last-update" class="w-3/4 md:text-lg font-title">
                 <span data-value="">Sunday, 10:00</span>
               </div>
               <div class="w-4/5 my-2 md:my-4 border-bottom border-b-2"></div>
-              <div id="clouds" class="w-3/4 md:text-lg font-medium">
+              <div id="clouds" class="w-3/4 md:text-lg font-title">
                 <span data-value>Mostly cloudy</span>
               </div>
-              <div id="rain" class="w-3/4 md:text-lg font-medium">
+              <div id="rain" class="w-3/4 md:text-lg">
                 Rain - <span data-value="">0</span>%
               </div>
               <div class="w-4/5 my-2 md:my-4 border-bottom border-b-2"></div>
@@ -110,7 +123,7 @@
           id="weather-side-info"
           class="flex flex-col py-2 px-4 md:py-4 md:px-8 md:col-start-6 md:col-end-13 lg:col-start-5 xl:col-start-4"
         >
-          <p class="col-span-full text-xl my-2">Today's Forecast</p>
+          <p class="col-span-full text-xl my-2 font-title">Today's Forecast</p>
           <div class="flex justify-around w-full my-5">
             <div class="rounded-full w-20 h-20 bg-white"></div>
             <div class="rounded-full w-20 h-20 bg-white"></div>
@@ -120,7 +133,9 @@
             <div class="rounded-full w-20 h-20 bg-white"></div>
           </div>
           <div class="grow"></div>
-          <p class="col-span-full text-xl my-2">Today's Highlights</p>
+          <p class="col-span-full text-xl my-2 font-title">
+            Today's Highlights
+          </p>
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
             <div id="humidity" class="info-card">
               <p class="text-slate-400">Humidity</p>
@@ -134,7 +149,7 @@
               <p class="text-slate-400">Pressure</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span data-unit>hPa</span>
+                ><span class="" data-unit>hPa</span>
               </div>
               <p class="text-slate-400" data-desc>Description</p>
             </div>
@@ -142,7 +157,7 @@
               <p class="text-slate-400">Wind</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span data-unit>km/h</span>
+                ><span class="" data-unit>km/h</span>
               </div>
               <p class="text-slate-400" data-desc>Description</p>
             </div>
@@ -150,7 +165,7 @@
               <p class="text-slate-400">Visibility</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span data-unit>km</span>
+                ><span class="" data-unit>km</span>
               </div>
               <p class="text-slate-400" data-desc>Description</p>
             </div>
