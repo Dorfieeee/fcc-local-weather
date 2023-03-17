@@ -4,29 +4,33 @@ import {
   epochToTime,
   kmToMi,
   weatherIcon,
+  epochToWeekday,
 } from "./utils.js";
+import forecastList from "./components/forecastList.js";
 
 /**
  * Updates the weather information with the given data.
  * It assumes the default unit system is metric.
  *
- * @param {Number} weatherDetails An object obtained from the current weather API
+ * @param {Number} weather An object obtained from the current weather API
  * @param {Number} unitSystem Unit system - "metric" | "imperial"
  *
  */
-export default async (weatherDetails, unitSystem) => {
+export default async (weather, unitSystem) => {
+  const { current, forecast } = weather;
+  const $forecast = $("#forecast");
   const isMetric = unitSystem === "metric";
   // The degree sign has code 176
   const tempUnit = `${String.fromCharCode(176)}${isMetric ? "C" : "F"}`;
   const distUnit = isMetric ? "km" : "mi";
   const speedUnit = isMetric ? "km/h" : "mph";
 
-  const { country, sunset, sunrise } = weatherDetails.sys;
-  const { name, dt, visibility } = weatherDetails;
+  const { country, sunset, sunrise } = current.sys;
+  const { name, dt, visibility } = current;
   const { feels_like, humidity, pressure, temp, temp_max, temp_min } =
-    weatherDetails.main;
-  const { icon, description, main } = weatherDetails.weather[0];
-  const { speed, deg } = weatherDetails.wind;
+    current.main;
+  const { icon, description, main } = current.weather[0];
+  const { speed, deg } = current.wind;
 
   updateField($("#visibility"), {
     value: Math.round(isMetric ? visibility / 1000 : kmToMi(visibility / 1000)),
@@ -80,9 +84,7 @@ export default async (weatherDetails, unitSystem) => {
   });
 
   updateField($("#last-update"), {
-    value: `${new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(
-      new Date(dt * 1000)
-    )}, ${epochToTime(dt)}`,
+    value: `${epochToWeekday(dt)}, ${epochToTime(dt)}`,
   });
 
   updateField($("#temp-min"), {
@@ -95,11 +97,21 @@ export default async (weatherDetails, unitSystem) => {
     unit: tempUnit,
   });
 
-  $("#icon").innerHTML = `
-  <a href="https://www.flaticon.com/free-icons/cloud" title="Icons created by iconixar - Flaticon"><img src=${weatherIcon(
+  $(
+    "#icon"
+  ).innerHTML = `<a href="https://www.flaticon.com/free-icons/cloud" title="Icons created by iconixar - Flaticon">
+  <img src=${weatherIcon(
     main
-  )} alt="${description}" class="md:w-full md:mx-auto" width=96 height=96 /></a>
-      `;
+  )} alt="${description}" class="md:w-full md:mx-auto" width=96 height=96 /></a>`;
+
+  // update forecast section
+  while ($forecast.firstChild) {
+    $forecast.removeChild($forecast.firstChild);
+  }
+  $forecast.innerHTML = forecastList(
+    forecast.list.slice(0, 25),
+    unitSystem
+  ).join("");
 };
 
 function updateField(el, data) {
