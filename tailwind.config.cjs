@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         title: ['"Tilt Warp"', "cursive"],
-        paragraph: ['"Jost"', "cursive"],
+        global: ['"Jost"', "cursive"],
       },
       gridTemplateRows: {
         // Set the first line to 6rem(navigation, search), rest auto
