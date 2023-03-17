@@ -19,7 +19,7 @@
     />
     <title>Weather App</title>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 font-global">
     <div
       class="mx-auto 2xl:container min-h-screen flex flex-col justify-center"
     >
@@ -78,15 +78,13 @@
                 <div id="icon" class="md:w-3/4 max-w-[12rem]"></div>
               </div>
               <div class="flex items-center gap-2">
-                <span id="temp-min font-paragraph"
-                  >min.<span class="font-paragraph text-lg ml-1" data-value
-                    >0</span
+                <span id="temp-min"
+                  >min.<span class="text-lg ml-1" data-value>0</span
                   ><span data-unit>&#176;C</span></span
                 >
                 <span class="mx-1 border-r-2 h-3/4"></span>
-                <span id="temp-max font-paragraph"
-                  >max.<span class="font-paragraph text-lg ml-1" data-value
-                    >0</span
+                <span id="temp-max"
+                  >max.<span class="text-lg ml-1" data-value>0</span
                   ><span data-unit>&#176;C</span></span
                 >
               </div>
@@ -99,7 +97,7 @@
               <div id="clouds" class="w-3/4 md:text-lg font-title">
                 <span data-value>Mostly cloudy</span>
               </div>
-              <div id="rain" class="w-3/4 md:text-lg font-paragraph">
+              <div id="rain" class="w-3/4 md:text-lg">
                 Rain - <span data-value="">0</span>%
               </div>
               <div class="w-4/5 my-2 md:my-4 border-bottom border-b-2"></div>
@@ -140,39 +138,39 @@
           </p>
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
             <div id="humidity" class="info-card">
-              <p class="text-slate-400 font-paragraph">Humidity</p>
+              <p class="text-slate-400">Humidity</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span>
                 <span data-unit>%</span>
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
             <div id="pressure" class="info-card">
-              <p class="text-slate-400 font-paragraph">Pressure</p>
+              <p class="text-slate-400">Pressure</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span class="font-paragraph" data-unit>hPa</span>
+                ><span class="" data-unit>hPa</span>
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
             <div id="wind" class="info-card">
-              <p class="text-slate-400 font-paragraph">Wind</p>
+              <p class="text-slate-400">Wind</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span class="font-paragraph" data-unit>km/h</span>
+                ><span class="" data-unit>km/h</span>
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
             <div id="visibility" class="info-card">
-              <p class="text-slate-400 font-paragraph">Visibility</p>
+              <p class="text-slate-400">Visibility</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span
-                ><span class="font-paragraph" data-unit>km</span>
+                ><span class="" data-unit>km</span>
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
             <div id="daytimes" class="info-card">
-              <p class="text-slate-400 font-paragraph">Sunrise & Sunset</p>
+              <p class="text-slate-400">Sunrise & Sunset</p>
               <div class="flex flex-col flex-wrap justify-between py-4">
                 <span id="sunrise"
                   ><span class="mr-1">&uarr;</span
@@ -182,15 +180,15 @@
                   ><span class="text-2xl" data-value>00:00</span></span
                 >
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
             <div id="feels-like" class="info-card">
-              <p class="text-slate-400 font-paragraph">Feels like</p>
+              <p class="text-slate-400">Feels like</p>
               <div class="py-4">
                 <span class="text-4xl mr-1" data-value>0</span>
                 <span data-unit>&#176;C</span>
               </div>
-              <p class="text-slate-400 font-paragraph" data-desc>Description</p>
+              <p class="text-slate-400" data-desc>Description</p>
             </div>
           </div>
         </div>
