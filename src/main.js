@@ -19,8 +19,8 @@ async function handleSuccessPermission(position) {
   );
   weatherData.forecast = await getWeatherDetails(
     "forecast",
-    54.70649,
-    20.51095
+    position.coords.latitude,
+    position.coords.longitude
   );
   updateWeather(weatherData, unitSystem);
 }

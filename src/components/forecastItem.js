@@ -2,7 +2,7 @@ export default (props) => {
   const weatherComponent = `
     <div class="rounded-2xl bg-white relative flex flex-col px-4 py-2 justify-between items-center mr-4 last:mr-0">
     <span class="text-lg">${props.title}</span>
-    <img src=${props.icon} alt=${props.alt} title=${props.alt} width="48" height="48">
+    <img src=${props.icon} alt="${props.alt}" title="${props.alt}" width="48" height="48">
     <span class="inline-flex gap-1">
       <span><span class="text-lg" data-value>${props.temp}</span><span data-unit>${props.tempUnit}</span></span>
       <span title="feels like" class="text-gray-400"><span class="text-lg" data-value>${props.feelsLike}</span><span data-unit>${props.tempUnit}</span></span>
