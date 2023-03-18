@@ -3,13 +3,22 @@ import updateWeather from "./updateWeather";
 import getWeatherDetails from "./apis/weatherDetails.js";
 import { $ } from "./utils";
 
-let weatherData = null;
+let weatherData = {
+  current: null,
+  forecast: null,
+};
 let unitSystem = "metric";
 
 document.addEventListener("DOMContentLoaded", main);
 
 async function handleSuccessPermission(position) {
-  weatherData = await getWeatherDetails(
+  weatherData.current = await getWeatherDetails(
+    "weather",
+    position.coords.latitude,
+    position.coords.longitude
+  );
+  weatherData.forecast = await getWeatherDetails(
+    "forecast",
     position.coords.latitude,
     position.coords.longitude
   );
@@ -18,7 +27,12 @@ async function handleSuccessPermission(position) {
 
 async function handleRejectPermission() {
   // Kaliningrad, Russia
-  weatherData = await getWeatherDetails(54.70649, 20.51095);
+  weatherData.current = await getWeatherDetails("weather", 54.70649, 20.51095);
+  weatherData.forecast = await getWeatherDetails(
+    "forecast",
+    54.70649,
+    20.51095
+  );
   updateWeather(weatherData, unitSystem);
 }
 

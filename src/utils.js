@@ -7,6 +7,11 @@ export const epochToTime = (seconds) =>
     new Date(seconds * 1000)
   );
 
+export const epochToWeekday = (seconds) =>
+  new Intl.DateTimeFormat(navigator.language, { weekday: "long" }).format(
+    new Date(seconds * 1000)
+  );
+
 /**
  * Converts a value representing Celcius to Fahrenheit
  * @param {float} C
