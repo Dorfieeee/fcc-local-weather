@@ -58,14 +58,29 @@
           id="weather-main-info"
           class="col-span-3 row-span-full flex py-4 px-4 md:px-8 flex-grow flex-col bg-white md:col-start-1 md:col-end-6 lg:col-end-5 xl:col-end-4 xl:rounded-tl-3xl xl:rounded-bl-3xl"
         >
-          <div id="search" class="mb-4 md:py-2 md:px-4">
+          <div id="search" class="mb-4 md:py-2 md:px-4 flex">
             <input
               id="string"
               type="text"
               placeholder="Search by city, postcode,..."
               class="text-lg w-full h-12 font-title"
             />
-            <button id="submit" type="button">Search</button>
+            <button id="submit" type="button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
           </div>
           <div
             id="weather-details"

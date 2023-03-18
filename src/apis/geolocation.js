@@ -1,11 +1,10 @@
 import axios from "axios";
 
-export default async (city, stateCode, countryCode) => {
+export default async (input) => {
   try {
     let coords = [];
     const response = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city}
-            ,${stateCode},${countryCode}&limit=1&appid=${
+      `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${
         import.meta.env.VITE_API_KEY
       }`
     );
