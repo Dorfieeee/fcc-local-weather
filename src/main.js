@@ -33,7 +33,7 @@ function handleUnitSwitchClick(e) {
 }
 
 async function handleDisplayWeatherBySearch(event) {
-  let searchText = $("#string").value;
+  let searchText = $("#input").value;
   let splitText = searchText.split(",");
   splitText = splitText.map((string) => string.trim()).join(",");
   let coords = await getLocationCoords(splitText);
