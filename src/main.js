@@ -36,8 +36,7 @@ function handleUnitSwitchClick(e) {
 }
 
 function toggleUnitSwitchStyle(el) {
-  el.classList.toggle("bg-black");
-  el.classList.toggle("text-white");
+  el.classList.toggle("active");
 }
 
 function main() {
