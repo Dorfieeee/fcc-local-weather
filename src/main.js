@@ -41,8 +41,16 @@ function handleUnitSwitchClick(e) {
 
   if (unitSystem === unitSelected) return;
 
+  for (let btn of e.target.parentElement.children) {
+    toggleUnitSwitchStyle(btn);
+  }
+
   unitSystem = unitSelected;
   updateWeather(weatherData, unitSystem);
+}
+
+function toggleUnitSwitchStyle(el) {
+  el.classList.toggle("active");
 }
 
 function main() {
@@ -54,4 +62,10 @@ function main() {
 
   $("#celsiusBtn").addEventListener("click", handleUnitSwitchClick);
   $("#fahrenheitBtn").addEventListener("click", handleUnitSwitchClick);
+
+  if (unitSystem === "metric") {
+    toggleUnitSwitchStyle($("#celsiusBtn"));
+  } else {
+    toggleUnitSwitchStyle($("#fahrenheitBtn"));
+  }
 }

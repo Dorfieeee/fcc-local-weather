@@ -30,29 +30,57 @@
         <!-- Navigation -->
         <div
           id="navigation"
-          class="flex items-center justify-between py-2 px-4 md:py-4 md:px-8 md:col-start-6 md:col-end-13 md:h-full lg:col-start-5 xl:col-start-4"
+          class="flex items-center justify-between bg-gray-100 py-2 px-4 md:col-start-6 md:col-end-13 md:h-full md:py-4 md:px-8 lg:col-start-5 xl:col-start-4"
         >
-          <div id="unit-switch" class="flex gap-2">
-            <button
-              id="fahrenheitBtn"
-              value="imperial"
-              class="h-10 w-10 rounded-full border border-blue-200 p-2"
-            >
-              &#176;F
-            </button>
+          <div class="flex gap-3">
             <button
               id="celsiusBtn"
               value="metric"
-              class="h-10 w-10 rounded-full border border-blue-200 p-2"
+              aria-label="Switch to metric unit system"
+              class="font-title h-10 w-10 rounded-xl [&.active]:bg-black [&.active]:text-white bg-white p-2 shadow hover:shadow-inner"
             >
               &#176;C
             </button>
+            <button
+              id="fahrenheitBtn"
+              value="imperial"
+              aria-label="Switch to imperial unit system"
+              class="font-title h-10 w-10 rounded-xl [&.active]:bg-black [&.active]:text-white bg-white p-2 shadow hover:shadow-inner"
+            >
+              &#176;F
+            </button>
           </div>
-          <div
-            id="user-avatar"
-            class="h-10 w-10 rounded-full bg-gray-400"
-          ></div>
+          <div class="flex gap-3">
+            <button
+              id="themeSwitch"
+              class="h-10 w-10 rounded-xl bg-white p-2 shadow hover:shadow-inner"
+              aria-label="Switch to dark theme"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+              </svg>
+            </button>
+            <div id="user-avatar" class="h-10 w-10">
+              <img
+                src="https://randomuser.me/api/portraits/men/40.jpg"
+                alt="User Avatar"
+                class="rounded-xl border-2 border-white shadow hover:border-gray-200 hover:shadow-inner"
+              />
+            </div>
+          </div>
         </div>
+
         <!-- Main info -->
         <div
           id="weather-main-info"
