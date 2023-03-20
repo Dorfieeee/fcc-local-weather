@@ -38,6 +38,8 @@ async function handleDisplayWeatherBySearch() {
   splitText = splitText.map((string) => string.trim()).join(",");
   searchText.value = splitText;
 
+  if (splitText.length === 0) return;
+
   let [lat, lon] = await getLocationCoords(splitText);
 
   weatherData = await getWeatherDetails(lat, lon);
