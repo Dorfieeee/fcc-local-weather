@@ -32,13 +32,15 @@ function handleUnitSwitchClick(e) {
   updateWeather(weatherData, unitSystem);
 }
 
-async function handleDisplayWeatherBySearch(event) {
-  let searchText = $("#input").value;
-  let splitText = searchText.split(",");
+async function handleDisplayWeatherBySearch() {
+  let searchText = $("#input");
+  let splitText = searchText.value.split(",");
   splitText = splitText.map((string) => string.trim()).join(",");
-  let coords = await getLocationCoords(splitText);
+  searchText.value = splitText;
 
-  weatherData = await getWeatherDetails(coords[0], coords[1]);
+  let [lat, lon] = await getLocationCoords(splitText);
+
+  weatherData = await getWeatherDetails(lat, lon);
   updateWeather(weatherData, unitSystem);
 }
 
