@@ -40,10 +40,17 @@ async function handleDisplayWeatherBySearch() {
 
   if (splitText.length === 0) return;
 
+  if (splitText.startsWith(",")) {
+    splitText = splitText.replace(/^[^a-z][^A-Z]*/, "");
+    searchText.value = splitText;
+  }
+
   let [lat, lon] = await getLocationCoords(splitText);
 
-  weatherData = await getWeatherDetails(lat, lon);
-  updateWeather(weatherData, unitSystem);
+  if (lat !== undefined && lon !== undefined) {
+    weatherData = await getWeatherDetails(lat, lon);
+    updateWeather(weatherData, unitSystem);
+  }
 }
 
 function main() {
