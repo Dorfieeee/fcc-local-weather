@@ -36,14 +36,12 @@ async function handleDisplayWeatherBySearch() {
   let searchText = $("#input");
   let splitText = searchText.value.split(",");
   splitText = splitText.map((string) => string.trim()).join(",");
+  if (splitText[0] !== /[a-z][A-Z]/) {
+    splitText = splitText.replace(/^[^a-z][^A-Z]*/, "");
+  }
   searchText.value = splitText;
 
   if (splitText.length === 0) return;
-
-  if (splitText.startsWith(",")) {
-    splitText = splitText.replace(/^[^a-z][^A-Z]*/, "");
-    searchText.value = splitText;
-  }
 
   let [lat, lon] = await getLocationCoords(splitText);
 

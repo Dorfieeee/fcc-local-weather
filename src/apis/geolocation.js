@@ -12,7 +12,6 @@ export default async (input) => {
       coords[0] = response.data[0].lat;
       coords[1] = response.data[0].lon;
     }
-
     return coords;
   } catch (error) {
     console.log(error);
