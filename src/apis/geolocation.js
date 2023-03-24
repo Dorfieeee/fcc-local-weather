@@ -8,6 +8,7 @@ export default async (input) => {
         import.meta.env.VITE_API_KEY
       }`
     );
+    console.log(response.data);
     if (response.data.length > 0) {
       coords[0] = response.data[0].lat;
       coords[1] = response.data[0].lon;

@@ -35,19 +35,27 @@ function handleUnitSwitchClick(e) {
 async function handleDisplayWeatherBySearch() {
   let searchText = $("#input");
   let splitText = searchText.value.split(",");
-  splitText = splitText.map((string) => string.trim()).join(",");
-  if (splitText[0] !== /[a-z][A-Z]/) {
-    splitText = splitText.replace(/^[^a-z][^A-Z]*/, "");
-  }
+
+  splitText.forEach((string, index) => {
+    splitText[index] = string.trim();
+    splitText[index] = string.replace(/^[^\p{L}]*/u, "");
+    console.log(string);
+  });
+
+  splitText = splitText.filter((string) => string !== "").join(",");
+  console.log(splitText);
   searchText.value = splitText;
 
   if (splitText.length === 0) return;
-
-  let [lat, lon] = await getLocationCoords(splitText);
-
-  if (lat !== undefined && lon !== undefined) {
+  let coords = await getLocationCoords(splitText);
+  if (coords.length === 2) {
+    let [lat, lon] = coords;
     weatherData = await getWeatherDetails(lat, lon);
     updateWeather(weatherData, unitSystem);
+  } else if (coords.length === 0) {
+    console.log("not found");
+  } else {
+    console.log("error");
   }
 }
 
