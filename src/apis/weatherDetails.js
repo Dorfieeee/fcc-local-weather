@@ -9,15 +9,15 @@ import axios from "axios";
  * @returns {Object} The weather details object
  */
 export default async (lat, lon) => {
+  let response;
   try {
-    const response = await axios.get(
+    response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${
         import.meta.env.VITE_API_KEY
       }&units=metric`
     );
-    return response.data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Bad request.");
   }
+  return response.data;
 };
