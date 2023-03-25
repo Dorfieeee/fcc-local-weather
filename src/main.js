@@ -49,15 +49,18 @@ async function handleDisplayWeatherBySearch() {
   let searchInput = $("#input");
   let searchQuery = searchInput.value
     .split(",")
-    // filter out empty and only whitespace containing chunks
-    .filter((chunk) => !chunk || !/^\d*$/.test(chunk))
     // remove any leading and trailing non letter characters
     .map((chunk) => chunk.replaceAll(/(^[^\p{L}]*)|([^\p{L}]*$)/gu, ""))
+    // filter out any empty and only whitespace containing chunks
+    .filter((chunk) => chunk !== "" || !/^\d*$/.test(chunk))
     .join(",");
 
-  searchInput.value = searchQuery;
+  if (!searchQuery) {
+    displayError("Invalid input, try it again.");
+    return;
+  }
 
-  if (!searchInput) return;
+  searchInput.value = searchQuery;
 
   try {
     [lat, lon] = await getLocationCoords(searchQuery);
