@@ -1,6 +1,7 @@
 import "./style.css";
 import updateWeather from "./updateWeather";
 import getWeatherDetails from "./apis/weatherDetails.js";
+import getLocationCoords from "./apis/geolocation.js";
 import { $ } from "./utils";
 
 let weatherData = {
@@ -47,6 +48,60 @@ function handleUnitSwitchClick(event) {
 
   unitSystem = unitSelected;
   updateWeather(weatherData, unitSystem);
+}
+
+async function handleDisplayWeatherBySearch() {
+  let lat, lon;
+  let searchInput = $("#input");
+  let searchQuery = searchInput.value
+    .split(",")
+    // remove any leading and trailing non letter characters
+    .map((chunk) => chunk.replaceAll(/(^[^\p{L}]*)|([^\p{L}]*$)/gu, ""))
+    // filter out any empty and only whitespace containing chunks
+    .filter((chunk) => chunk !== "" || !/^\d*$/.test(chunk))
+    .join(",");
+
+  if (!searchQuery) {
+    displayError("Invalid input, try it again.");
+    return;
+  }
+
+  searchInput.value = searchQuery;
+
+  try {
+    [lat, lon] = await getLocationCoords(searchQuery);
+    weatherData.current = await getWeatherDetails("weather", lat, lon);
+    weatherData.forecast = await getWeatherDetails("forecast", lat, lon);
+    updateWeather(weatherData, unitSystem);
+  } catch (error) {
+    displayError(error);
+  }
+}
+
+// extra feature
+async function displayError(msg) {
+  const container = $("#weather-app").parentElement;
+  const slideUp = "translate-y-0";
+  const slideDown = "translate-y-20";
+  const transitionDuration = 700;
+  const displayDuration = 1000;
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const errorEl = document.createElement("div");
+  errorEl.innerHTML = msg;
+  errorEl.className = `absolute -top-20 w-full p-4 bg-red-400 transition-transform duration-700 translate-y-0`;
+  errorEl.onclick = () => errorEl.remove();
+  container.append(errorEl);
+  // need to delay due to default browser behaviour
+  // await delay(0);
+  // but requesting animation frame also works
+  requestAnimationFrame(() => errorEl.classList.replace(slideUp, slideDown));
+
+  await delay(transitionDuration + displayDuration);
+  errorEl.classList.replace(slideDown, slideUp);
+
+  await delay(transitionDuration);
+  errorEl.remove();
 }
 
 function toggleUnitSwitchStyle(el) {
@@ -104,6 +159,7 @@ function main() {
   $("#fahrenheitBtn").addEventListener("click", handleUnitSwitchClick);
   $("#forecast").addEventListener("pointerdown", handleForecastPointerDown);
   $("#forecast").addEventListener("dragstart", () => false);
+  $("#submit").addEventListener("click", handleDisplayWeatherBySearch);
 
   if (unitSystem === "metric") {
     toggleUnitSwitchStyle($("#celsiusBtn"));

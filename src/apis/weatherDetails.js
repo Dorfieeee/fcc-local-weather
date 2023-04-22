@@ -18,7 +18,6 @@ export default async (type, lat, lon) => {
     );
     return response.data;
   } catch (error) {
-    console.log(error);
-    return null;
+    throw new Error("Bad request.");
   }
 };
