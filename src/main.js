@@ -77,12 +77,13 @@ async function displayError(msg) {
   const slideUp = "translate-y-0";
   const slideDown = "translate-y-20";
   const transitionDuration = 700;
-  const displayDuration = 3000;
+  const displayDuration = 1000;
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const errorEl = document.createElement("div");
   errorEl.innerHTML = msg;
   errorEl.className = `absolute -top-20 w-full p-4 bg-red-400 transition-transform duration-700 translate-y-0`;
+  errorEl.onclick = () => errorEl.remove();
   container.append(errorEl);
   // need to delay due to default browser behaviour
   // await delay(0);
