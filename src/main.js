@@ -70,7 +70,8 @@ async function handleDisplayWeatherBySearch() {
 
   try {
     [lat, lon] = await getLocationCoords(searchQuery);
-    weatherData = await getWeatherDetails(lat, lon);
+    weatherData.current = await getWeatherDetails("weather", lat, lon);
+    weatherData.forecast = await getWeatherDetails("forecast", lat, lon);
     updateWeather(weatherData, unitSystem);
   } catch (error) {
     displayError(error);
@@ -158,6 +159,7 @@ function main() {
   $("#fahrenheitBtn").addEventListener("click", handleUnitSwitchClick);
   $("#forecast").addEventListener("pointerdown", handleForecastPointerDown);
   $("#forecast").addEventListener("dragstart", () => false);
+  $("#submit").addEventListener("click", handleDisplayWeatherBySearch);
 
   if (unitSystem === "metric") {
     toggleUnitSwitchStyle($("#celsiusBtn"));
