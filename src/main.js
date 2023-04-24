@@ -13,28 +13,15 @@ let unitSystem = "metric";
 document.addEventListener("DOMContentLoaded", main);
 
 async function handleSuccessPermission(position) {
-  weatherData.current = await getWeatherDetails(
-    "weather",
+  await updateWeatherDetails(
     position.coords.latitude,
     position.coords.longitude
   );
-  weatherData.forecast = await getWeatherDetails(
-    "forecast",
-    position.coords.latitude,
-    position.coords.longitude
-  );
-  updateWeather(weatherData, unitSystem);
 }
 
 async function handleRejectPermission() {
   // Kaliningrad, Russia
-  weatherData.current = await getWeatherDetails("weather", 54.70649, 20.51095);
-  weatherData.forecast = await getWeatherDetails(
-    "forecast",
-    54.70649,
-    20.51095
-  );
-  updateWeather(weatherData, unitSystem);
+  await updateWeatherDetails(54.70649, 20.51095);
 }
 
 function handleUnitSwitchClick(event) {
@@ -70,9 +57,7 @@ async function handleDisplayWeatherBySearch() {
 
   try {
     [lat, lon] = await getLocationCoords(searchQuery);
-    weatherData.current = await getWeatherDetails("weather", lat, lon);
-    weatherData.forecast = await getWeatherDetails("forecast", lat, lon);
-    updateWeather(weatherData, unitSystem);
+    await updateWeatherDetails(lat, lon);
   } catch (error) {
     displayError(error);
   }
@@ -106,6 +91,12 @@ async function displayError(msg) {
 
 function toggleUnitSwitchStyle(el) {
   el.classList.toggle("active");
+}
+
+async function updateWeatherDetails(lat, lon) {
+  weatherData.current = await getWeatherDetails("weather", lat, lon);
+  weatherData.forecast = await getWeatherDetails("forecast", lat, lon);
+  updateWeather(weatherData, unitSystem);
 }
 
 const handleForecastPointerDown = (() => {
